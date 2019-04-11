@@ -1,0 +1,177 @@
+<div class="page" data-name="main">
+
+  <div class="navbar">
+    <div class="navbar-inner">
+      <div class="left">
+        <a href="#" class="link icon-only panel-open" data-panel="left">
+          <i class="icon f7-icons ios-only">menu</i>
+          <i class="icon material-icons md-only">menu</i>
+        </a>
+      </div>
+      <div class="title sliding">Recente Chats</div>
+      <div class="right">
+        <a class="link icon-only searchbar-enable" data-searchbar=".searchbar-components" style="display:none;">
+          <i class="icon f7-icons if-not-md">search</i>
+          <i class="icon material-icons md-only">search</i>
+        </a>
+      </div>
+      <form data-search-container=".virtual-list-contacts" data-search-in="li" data-search-in=".item-title" class="searchbar searchbar-expandable searchbar-components searchbar-init">
+        <div class="searchbar-inner">
+          <div class="searchbar-input-wrap">
+            <input type="search" placeholder="Search components"/>
+            <i class="searchbar-icon"></i>
+            <span class="input-clear-button"></span>
+          </div>
+          <span class="searchbar-disable-button if-not-aurora">Cancel</span>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div id="floatingButtonContact" style="display:none" class="fab fab-right-bottom">
+    <a href="#"><i class="icon f7-icons">person_round</i></a>
+  </div>
+
+  <div class="toolbar tabbar toolbar-top">
+    <div class="toolbar-inner">
+      <a href="#tab-chats" class="tab-link tab-chats tab-link-active"><i class="icon f7-icons">chat</i></a>
+      <a href="#tab-contacts" class="tab-link tab-contacts"><i class="icon f7-icons">persons</i></a>
+    </div>
+  </div>
+
+    <!-- <div class="tabs-animated-wrap"> -->
+
+      <div id="tabs" class="tabs">
+        <div id="tab-chats" class="page-content tab tab-chats tab-active">
+          <div class="list contacts-list media-list links-list virtual-list virtual-list-chats search-list searchbar-found"></div>
+           <div class="list simple-list searchbar-not-found">
+            <ul>
+              <li>Nothing found</li>
+            </ul>
+          </div>
+        </div>
+        <div id="tab-contacts" class="page-content tab tab-contacts">
+          <div class="list contacts-list media-list links-list virtual-list virtual-list-contacts search-list searchbar-found"></div>
+           <div class="list simple-list searchbar-not-found">
+            <ul>
+              <li>Nothing found</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+    <!-- </div> -->
+
+</div>
+
+<script>
+
+
+
+
+  $('#floatingButtonChat').on('click', function (){
+    console.log('floatingButtonChat');
+    app.tab.show('.tab-contacts','.tab-contacts');
+
+  });
+
+  $('#floatingButtonContact').on('click', function (){
+      console.log('floatingButtonChat');
+      // import bulk of names.
+      delete listDataContacts;
+
+      listDataContacts =[];
+      console.log('listDataContacts');
+      console.log(listDataContacts);
+      var sortByProperty = function (property) {
+          return function (x, y) {
+              return ((x[property] === y[property]) ? 0 : ((x[property] > y[property]) ? 1 : -1));
+          };
+      };
+
+      listDataContacts.push(
+        {
+          "to_user_id":"AABBCCDD",
+          "header":"M",
+          "to_user_name":"Macbook Chrome",
+          "avatar":"https://cdn.framework7.io/placeholder/people-100x100-7.jpg"
+        },
+        {
+          "to_user_id":"99DD88FF",
+          "header":"I",
+          "to_user_name":"iMac chrome",
+          "avatar":"https://cdn.framework7.io/placeholder/people-100x100-7.jpg"
+        },
+          {
+            "to_user_id":"A8JE3NSR",
+            "header":"S",
+            "to_user_name":"Samsung",
+            "avatar":"https://cdn.framework7.io/placeholder/people-100x100-7.jpg"
+          },
+          {
+            "to_user_id":"NSS7KK23",
+            "header":"I",
+            "to_user_name":"imac Safari",
+            "avatar":"https://cdn.framework7.io/placeholder/people-100x100-7.jpg"
+          },
+          {
+            "to_user_id":"MSSS522B",
+            "header":"M",
+            "to_user_name":"Marcel",
+            "avatar":"https://cdn.framework7.io/placeholder/people-100x100-7.jpg"
+          },
+          {
+            "to_user_id":"LAAW100K",
+            "header":"S",
+            "to_user_name":"Sveta",
+            "avatar":"https://cdn.framework7.io/placeholder/people-100x100-7.jpg"
+          },
+          {
+            "to_user_id":"QPSY230S",
+            "header":"B",
+            "to_user_name":"Bas",
+            "avatar":"https://cdn.framework7.io/placeholder/people-100x100-7.jpg"
+          },
+          {
+            "to_user_id":"KSYX28DA",
+            "header":"A",
+            "to_user_name":"Annemiek",
+            "avatar":"https://cdn.framework7.io/placeholder/people-100x100-7.jpg"
+          },
+          {
+            "to_user_id":"DDU7Q9SD",
+            "header":"M",
+            "to_user_name":"Marie",
+            "avatar":"https://cdn.framework7.io/placeholder/people-100x100-7.jpg"
+          },
+          {
+            "to_user_id":"39SD63NS",
+            "header":"T",
+            "to_user_name":"Tom",
+            "avatar":"https://cdn.framework7.io/placeholder/people-100x100-7.jpg"
+          },
+          {
+            "to_user_id":"0DHE61HS",
+            "header":"M",
+            "to_user_name":"Mark",
+            "avatar":"https://cdn.framework7.io/placeholder/people-100x100-7.jpg"
+          },
+          {
+            "to_user_id":"D89DH27D",
+            "header":"B",
+            "to_user_name":"Bob",
+            "avatar":"https://cdn.framework7.io/placeholder/people-100x100-7.jpg"
+          }
+
+        );
+
+
+      listDataContacts.sort(sortByProperty('to_user_name'));
+      localStorage.listDataContacts = JSON.stringify(listDataContacts);
+      console.log('BULK NAMES IMPORTED');
+  });
+
+
+
+
+</script>

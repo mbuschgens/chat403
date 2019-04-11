@@ -1,0 +1,955 @@
+<template>
+
+  <div class="page" data-name="messages">
+    <div class="navbar">
+      <div class="navbar-inner sliding">
+        <div class="left">
+          <a href="#" class="link back check-for-new-messages-stop">
+            <i class="icon f7-icons">arrow_left</i>
+            <span class="ios-only"></span>
+
+            <div id="container" class="container">
+              <div id="name" class="name">
+               </div>
+            </div>
+
+            <!-- <div class="message-avatar" style="background-image:url(https://cdn.framework7.io/placeholder/people-100x100-7.jpg);"></div> -->
+
+          </a>
+        </div>
+        <div class="title">
+
+                  <div id="tousername" class="tousername"></div>
+                  <div id="lastseen" class="lastseen"></div>
+                  <div id="typing" class="typing" style="display:none;">Typing...</div>
+
+
+        </div>
+
+        <div class="right">
+          <!-- <a href="#" class="link back"><i class="icon f7-icons">close</i></a> -->
+          <div id="generate"><a href="#"><i class="icon f7-icons create-buddy-key">more_vertical_fill</i></a></div>
+        </div>
+
+      </div>
+    </div>
+
+
+
+    <div id="messagebar" class="toolbar messagebar" @messagebar:attachmentdelete="deleteAttachment">
+      <div class="toolbar-inner">
+        <a class="link icon-only" @click="sheetToggle">
+          <i class="icon f7-icons if-not-md">camera_fill</i>
+          <i class="icon material-icons md-only">camera_alt</i>
+        </a>
+
+
+
+
+        <div id="messagebar-area" class="messagebar-area" >
+          <textarea class="resizable" placeholder="Message" id="desinp" name="desinp" maxlength="245" ></textarea>
+        </div>
+
+        <a class="link icon-only demo-send-message-link" @click="sendMessage">
+          <i class="icon f7-icons if-not-md">arrow_up_round_fill</i>
+          <i class="icon material-icons md-only">send</i>
+        </a>
+      </div>
+      <div class="messagebar-sheet">
+        {{#each images}}
+        <label class="checkbox messagebar-sheet-image" style="background-image:url({{this}})" @change="handleAttachment">
+          <input type="checkbox">
+          <i class="icon icon-checkbox"></i>
+        </label>
+        {{/each}}
+      </div>
+    </div>
+    <div class="page-content messages-content">
+      <div class="messages">
+        <!-- <div class="messages-title"><b>Sunday, Feb 9,</b> 12:58</div> -->
+
+
+
+      </div>
+    </div>
+  </div>
+</template>
+
+
+
+
+
+
+<script>
+
+
+
+
+  return {
+    data: function () {
+      return {
+        images: [
+          'https://cdn.framework7.io/placeholder/cats-300x300-1.jpg',
+          'https://cdn.framework7.io/placeholder/cats-200x300-2.jpg',
+          'https://cdn.framework7.io/placeholder/cats-400x300-3.jpg',
+          'https://cdn.framework7.io/placeholder/cats-300x150-4.jpg',
+          'https://cdn.framework7.io/placeholder/cats-150x300-5.jpg',
+          'https://cdn.framework7.io/placeholder/cats-300x300-6.jpg',
+          'https://cdn.framework7.io/placeholder/cats-300x300-7.jpg',
+          'https://cdn.framework7.io/placeholder/cats-200x300-8.jpg',
+          'https://cdn.framework7.io/placeholder/cats-400x300-9.jpg',
+          'https://cdn.framework7.io/placeholder/cats-300x150-10.jpg'
+        ],
+        people: [
+          {
+            name: 'Kate Johnson',
+            avatar: 'https://cdn.framework7.io/placeholder/people-100x100-9.jpg'
+          },
+          {
+            name: 'Blue Ninja',
+            avatar: 'https://cdn.framework7.io/placeholder/people-100x100-7.jpg'
+          },
+        ],
+        answers: [
+          'Yes!',
+          'No',
+          'Hm...',
+          'I am not sure',
+          'And what about you?',
+          'May be ;)',
+          'Lorem ipsum dolor sit amet, consectetur',
+          'What?',
+          'Are you sure?',
+          'Of course',
+          'Need to think about it',
+          'Amazing!!!',
+        ],
+        responseInProgress: false,
+      }
+    },
+    methods: {
+      sheetToggle: function () {
+        var self = this;
+        self.messagebar.sheetToggle();
+      },
+      deleteAttachment: function (e, index) {
+        var self = this;
+        var image = self.messagebar.attachments.splice(index, 1)[0];
+        self.messagebar.renderAttachments();
+        self.checkAttachments();
+        // Uncheck in sheet
+        var imageIndex = self.images.indexOf(image);
+        self.$el.find('.messagebar-sheet .checkbox').eq(imageIndex).find('input').prop('checked', false);
+      },
+      handleAttachment: function (e) {
+        var self = this;
+        var $$ = self.$$;
+        var index = $(e.target).parents('label.checkbox').index();
+        var image = self.images[index];
+        if (e.target.checked) {
+          // Add to attachments
+          self.messagebar.attachments.unshift(image)
+        } else {
+          // Remove from attachments
+          self.messagebar.attachments.splice(self.messagebar.attachments.indexOf(image), 1);
+        }
+        self.messagebar.renderAttachments();
+        self.checkAttachments();
+      },
+      checkAttachments: function () {
+        var self = this;
+        if (self.messagebar.attachments.length > 0) {
+          self.messagebar.attachmentsShow();
+          self.messagebar.setPlaceholder('Add comment or Send');
+        } else {
+          self.messagebar.attachmentsHide();
+          self.messagebar.setPlaceholder('Message');
+        }
+      },
+
+      sendMessage: function () {
+        var self = this;
+        var text = self.messagebar.getValue().replace(/\n/g, '<br>').trim();
+        var messagesToSend = [];
+
+        function transferMessage(text, tempImg){
+          console.log('function transferMessage');
+
+            var text = text;
+            localStorage.tempImg = tempImg;
+            var crypt = new JSEncrypt();
+
+            crypt.setKey(localStorage.getItem('PublicKey-'+localStorage.to_user_id));
+
+              var encrypted = text;
+              //console.log("!!! message to send befire crypted: " + encrypted)
+              var encrypted = crypt.encrypt(encrypted);
+              //console.log("!!! message to send after crypted: " + encrypted)
+
+
+              var now = moment().format('YYYY-MM-DD HH:mm:ss');
+              var textFooter = moment().format('HH:mm');
+
+
+              var messageDumpSent = {
+
+                          to_user_id:localStorage.to_user_id,
+                          from_user_id:localStorage.from_user_id,
+                          chat_message:text,
+                          timestamp:now,
+                          status:'1',
+                          text: text,
+                          header:'',
+                          footer:'pending',
+                          name:'',
+                          avatar:'',
+                          type:'sent',
+                          textHeader:'',
+                          textFooter:textFooter,
+                          image:localStorage.tempImg,
+                          imageSrc:'',
+                          isTitle:'',
+                          cssClass:'',
+                          attrs:'',
+                          chat_message_id:'',
+                          chat_message_status:'0'
+
+            };
+
+        messagesToSend.push(messageDumpSent);
+
+        var now = moment().format('YYYY-MM-DD HH:mm:ss');
+        var textFooter = moment().format('HH:mm');
+
+                    var dump = {
+
+                                  to_user_id:localStorage.to_user_id,
+                                  from_user_id:localStorage.from_user_id,
+                                  chat_message:encrypted,
+                                  timestamp:now,
+                                  status:'1',
+                                  text: encrypted,
+                                  header:'',
+                                  footer:'pending',
+                                  name:'',
+                                  avatar:'',
+                                  type:'sent',
+                                  textHeader:'',
+                                  textFooter:textFooter,
+                                  image:localStorage.tempImg,
+                                  imageSrc:'',
+                                  isTitle:'',
+                                  cssClass:'',
+                                  attrs:'',
+                                  chat_message_id:'',
+                                  chat_message_status:'0'
+
+                      };
+
+
+                    app.request.promise.post('https://app.phone403.com/php/insert_chat.php', dump)
+                      .then(function (data) {
+                        console.log('insert_chat.php data chat_message_id : ' + data);
+
+                        var now = moment().format('YYYY-MM-DD HH:mm:ss');
+                        var textFooter = moment().format('HH:mm');
+
+                          var messageDumpSent = {
+
+                            to_user_id:localStorage.to_user_id,
+                            from_user_id:localStorage.from_user_id,
+                            chat_message:text,
+                            timestamp:now,
+                            status:'1',
+                            text: text,
+                            header:'',
+                            footer:'sent',
+                            name:'',
+                            avatar:'',
+                            type:'sent',
+                            textHeader:'',
+                            textFooter:textFooter,
+                            image:localStorage.tempImg,
+                            imageSrc:'',
+                            isTitle:'',
+                            cssClass:'',
+                            attrs:'',
+                            chat_message_id:data,
+                            chat_message_status:'1'
+
+                          };
+
+                          self.messages.removeMessage(lastInsertIndex);
+                          self.messages.addMessage(messageDumpSent, false);
+                          localStorage.setItem('messages'+localStorage.to_user_id, JSON.stringify(self.messages.messages));
+                    });
+
+                console.log('messagesToSend.push');
+
+        }
+
+
+        var tempImg;
+        self.messagebar.attachments.forEach(function (attachment) {
+
+          var size = attachment.split('placeholder/cats-')[1].split('-')[0].split('x');
+            // tempImg = {
+            // image: '<img src="' + attachment + '" style="width: ' + (size[0]/2) + 'px; height: ' + (size[1]/2) + 'px">'
+            // };
+
+          tempImg = '<img src="' + attachment + '" style="width: ' + (size[0]/2) + 'px; height: ' + (size[1]/2) + 'px">';
+
+          transferMessage(text, tempImg);
+
+        });
+
+
+        if (text.trim().length) {
+
+        if(!tempImg){
+          tempImg = '';
+            transferMessage(text, tempImg );
+            }
+        }
+
+        // Reset attachments
+        self.messagebar.attachments = [];
+        self.checkAttachments();
+        // Hide sheet
+        self.messagebar.sheetHide();
+        // Uncheck selected images in sheet
+        self.messagebar.$sheetEl.find('input').prop('checked', false);
+        // Clear area
+        self.messagebar.clear();
+        // Focus area
+        if (text.length) self.messagebar.focus();
+
+
+        playNotificationSound(sound);
+
+        // Send message
+        self.messages.addMessages(messagesToSend);
+
+        // console.log(messagesToSend);
+
+        var now = moment().format('YYYY-MM-DD HH:mm:ss');
+
+      var lastInsertIndex = self.messages.messages.findIndex((x => x.timestamp == now));
+      console.log('lastInsertIndex');
+      console.log(lastInsertIndex);
+
+      console.log('messages.addMessages(messagesToSend)');
+
+
+      var last_activity = moment();
+      var last_message_time = moment().format('YYYY-MM-DD HH:mm:ss');
+
+      //var last_message_time = app.utils.now();
+
+      var item =
+       {
+          "to_user_id":localStorage.to_user_id,
+          "header":localStorage.header,
+          "to_user_name":localStorage.to_user_name,
+          "avatar":localStorage.avatar,
+          "last_activity":last_activity,
+          "waitingmessages":'0',
+          "last_message":text,
+          "last_message_time":last_message_time
+
+        };
+
+      if(virtualListChats.items.find(x => x.to_user_id === localStorage.to_user_id)){
+
+           //console.log('id is in virtualListChats ');
+
+           var objIndex = virtualListChats.items.findIndex(obj => obj.to_user_id === localStorage.to_user_id);
+
+           //console.log('id is in virtualListChats objIndex: ' +objIndex );
+
+           virtualListChats.deleteItem(objIndex);
+
+           virtualListChats.prependItem(item);
+
+           localStorage.listDataChats = JSON.stringify(virtualListChats.items);
+           // console.log(virtualListChats.$el);
+       }
+       else
+       {
+         // console.log('virtualListChats.items');
+         // console.log(virtualListChats.items);
+
+         virtualListChats.prependItem(item);
+
+         localStorage.listDataChats = JSON.stringify(virtualListChats.items);
+
+         // console.log('localStorage.listDataChats');
+         // console.log(localStorage.listDataChats);
+         console.log('id is not in virtualListChats');
+      }
+
+
+      localStorage.setItem('messages'+localStorage.to_user_id, JSON.stringify(self.messages.messages));
+      self.messages.scroll();
+
+
+
+      },
+    },
+
+    on: {
+      pageBeforeRemove: function (e, page) {
+        var self = this;
+        if (self.messagebar) self.messagebar.destroy();
+      },
+      pageInit: function (e, page) {
+        var self = this;
+        var app = self.$app;
+
+
+        var to_user_id = page.route.query.to_user_id;
+        var header = page.route.query.header;
+        var to_user_name = page.route.query.to_user_name;
+        var avatar = page.route.query.avatar;
+
+        var initials = to_user_name.charAt(0);
+
+        console.log('remove badge localStorage');
+        localStorage.removeItem('bagde'+to_user_id);
+
+        $('.item-after-badge'+to_user_id).html('<span id="badge" class="badge-space"></span>');
+
+        if(localStorage.listDataChats){
+          var editArray = JSON.parse(localStorage.listDataChats)
+
+          var objIndex = editArray.findIndex(obj => obj.to_user_id === to_user_id);
+
+          console.log('id is in editArray objIndex: ' +objIndex );
+
+          if(objIndex != '-1')
+          {
+
+            console.log('objIndex.waitingmessages : '+ editArray[objIndex].waitingmessages);
+            console.log('objIndex.waitingmessagesInsert : '+ editArray[objIndex].waitingmessagesInsert);
+
+            var waitingmessagesInsert = '<span id="badge" class="badge"></span>';
+            console.log('Updated.');
+
+            var item =
+            {
+                "to_user_id":editArray[objIndex].to_user_id,
+                "header":editArray[objIndex].header,
+                "to_user_name":editArray[objIndex].to_user_name,
+                "avatar":editArray[objIndex].avatar,
+                "last_activity":editArray[objIndex].last_activity,
+                "waitingmessages":'0',
+                "last_message":editArray[objIndex].last_message,
+                "last_message_time":editArray[objIndex].last_message_time,
+                "waitingmessagesInsert":waitingmessagesInsert
+              };
+
+              virtualListChats.deleteItem(objIndex);
+              virtualListChats.prependItem(item);
+              localStorage.listDataChats = JSON.stringify(virtualListChats.items);
+
+          }
+
+        }
+
+
+
+
+
+        document.getElementById("messagebar").addEventListener("focusin", myFunctionfocusin);
+
+        function myFunctionfocusin() {
+          console.log('chat_message myFunctionfocusin START typing' + localStorage.getItem("login_details_id"));
+          var is_type = 'yes';
+
+          app.request.promise.post('https://app.phone403.com/php/update_is_type_status.php', { login_details_id:localStorage.getItem("login_details_id"), is_type:is_type })
+            .then(function (data) {
+              console.log(data);
+              console.log(localStorage.getItem("from_user_id"));
+            });
+
+          setTimeout(function () {
+            var is_type = 'no';
+
+            app.request.promise.post('https://app.phone403.com/php/update_is_type_status.php', { login_details_id:localStorage.getItem("login_details_id"), is_type:is_type })
+              .then(function (data) {
+                console.log(data);
+                console.log(localStorage.getItem("from_user_id"));
+              });
+
+          },3000);
+
+        }
+
+
+        document.getElementById("messagebar").addEventListener("focusout", myFunctionfocusout);
+
+        function myFunctionfocusout() {
+          console.log('chat_message myFunctionfocusout stop typing' + localStorage.getItem("from_user_id"));
+          var is_type = 'no';
+
+          app.request.promise.post('https://app.phone403.com/php/update_is_type_status.php', { login_details_id:localStorage.getItem("login_details_id"), is_type:is_type })
+            .then(function (data) {
+              console.log(data);
+              console.log(localStorage.getItem("from_user_id"));
+            });
+        }
+
+
+        var wrapper = document.createElement('div');
+        var text    = document.getElementById("desinp");
+        var c_wrap  = document.createElement('div');
+        var count   = document.createElement('span');
+
+        wrapper.style.position = 'relative';
+
+        c_wrap.style.position = 'absolute';
+        c_wrap.style.bottom = '6px';
+        c_wrap.style.color = '#ccc';
+        // c_wrap.style.left = "215px";
+
+        c_wrap.innerHTML = '';
+
+        text.parentNode.appendChild(wrapper);
+        wrapper.appendChild(text);
+
+        c_wrap.appendChild(count);
+        wrapper.appendChild(c_wrap);
+
+        text.style.color = "#ccc";
+        text.style.resize = "none";
+        text.style.height = "auto";
+
+        count.style.fontSize = "10px";
+
+
+        text.rows = "3";
+
+        function _set() {
+        	// c_wrap.style.left = (text.clientWidth - c_wrap.clientWidth - 16) + 'px';
+          c_wrap.style.left = (225) + 'px';
+        	count.innerHTML = 245 - this.value.length || 0;
+        }
+
+        text.addEventListener('input', _set);
+        _set.call(text);
+
+
+
+
+      var checkForNewMessage = setInterval(function(){
+
+        console.log('Check for new message in Message page : ' + localStorage.to_user_id);
+
+        app.request.promise.post('https://app.phone403.com/php/fetch_chat_message.php', { from_user_id:localStorage.getItem("from_user_id"), to_user_id:localStorage.to_user_id})
+          .then(function (messageDumpReceived) {
+            //localStorage.setItem('messages'+to_user_id, messageDumpReceived);
+            console.log('new message messageDumpReceived: '+messageDumpReceived);
+              if ( messageDumpReceived.length > 10) {
+                console.log('Receive We have new data! messages.html');
+                var obj = JSON.parse(messageDumpReceived);
+
+                // receiveData edit remove footer
+                // console.log(obj);
+                // console.log(obj.footer);
+                obj.footer = '';
+
+                var crypt = new JSEncrypt();
+                crypt.setKey(localStorage.getItem('PrivateKey'));
+                var crypted = obj.chat_message;
+                //console.log('crypted : '+ crypted);
+                var decrypted = crypt.decrypt(crypted);
+                //console.log(decrypted);
+                obj.chat_message = decrypted;
+                obj.text = decrypted;
+
+                playNotificationSound(sound);
+
+                self.messages.addMessages([obj]);
+
+                self.messages.scroll();
+
+                localStorage.setItem('messages'+localStorage.to_user_id, JSON.stringify(self.messages.messages));
+
+                //console.log(obj);
+                if(obj.avatar === '')
+                  {
+                  console.log('obj.avatar = empty');
+                  obj.avatar='https://cdn.framework7.io/placeholder/people-100x100-7.jpg'
+                };
+
+                var waitingmessages = obj.waitingmessages;
+                var last_activity = moment();
+                var last_message_time = obj.timestamp
+                //console.log('last_message_time : ' +last_message_time);
+                // search to_user_name in localsession contacts
+                //console.log('search name from contacts storage');
+
+                var data = JSON.parse(localStorage.listDataContacts);
+                //console.log(obj.from_user_id);
+
+                var objIndex = data.findIndex((x => x.to_user_id == obj.from_user_id));
+                //console.log(objIndex);
+
+                var to_user_name = data[objIndex].to_user_name;
+
+                //console.log(to_user_name);
+
+                if(obj.chat_message === ''){
+                  console.log('maybe image ;?');
+                  obj.chat_message = 'Image received...';
+                  obj.text = 'Image received...';
+                }
+
+                var item =
+                {
+                    "to_user_id":obj.from_user_id,
+                    "header":obj.header,
+                    "to_user_name":to_user_name,
+                    "avatar":obj.avatar,
+                    "last_activity":last_activity,
+                    "waitingmessages":waitingmessages,
+                    "last_message":obj.chat_message,
+                    "last_message_time":last_message_time
+                  };
+
+
+
+
+                if(virtualListChats.items.find(x => x.to_user_id === to_user_id))
+                {
+                     console.log('id is in virtualListChats');
+
+                     var data = JSON.parse(localStorage.listDataChats);
+                     // var last_activity = moment();
+                     //
+                     // objIndex = data.findIndex((obj => obj.to_user_id == to_user_id)); // find index
+                     //
+                     // //data[objIndex].last_activity = last_activity; // update last_activity
+                     //
+                     // data.splice(objIndex, 1); // delete op index find
+                     var objIndex = virtualListChats.items.findIndex(obj => obj.to_user_id === to_user_id);
+                     console.log('id is in virtualListChats objIndex: ' +objIndex );
+                     virtualListChats.deleteItem(objIndex);
+                     virtualListChats.prependItem(item);
+                     localStorage.listDataChats = JSON.stringify(virtualListChats.items);
+                }
+
+
+
+
+              }
+          });
+        },3000);
+
+
+
+
+
+        $('.tousername').html(to_user_name);
+        $('.name').html(initials);
+
+        $('.check-for-new-messages-stop').on('click', function(){
+          console.log('check-for-new-messages-stop clicked ');
+          clearInterval(checkForNewMessage);
+          clearInterval(check_isTyp);
+          clearInterval(check_messStatus);
+          myFunctionfocusout();
+          localStorage.to_user_id = '';
+        });
+
+        $('.create-buddy-key').on('click', function(){
+          console.log('create-buddy-key');
+
+
+        });
+
+
+        // app.messages.get(el)
+      $(document).on('click', '.message', function(){
+            console.log('message:open');
+            var index = $(this).index();
+            console.log('index:'+index);
+            var ac1 = app.actions.create({
+              buttons: [
+                {
+                  text: 'Delete message',
+                  bold: true,
+                  onClick: function () {
+                    //app.dialog.alert('Message ' +index + ' deleted.');
+                    self.messages.removeMessage(index);
+                    console.log('index deleted : ' + index);
+                    localStorage.setItem('messages'+localStorage.to_user_id, JSON.stringify(self.messages.messages));
+                      ac1.close();
+                  }
+                },
+                {
+                  text: 'Cancel',
+                  color: 'red'
+                },
+              ]
+            });
+            ac1.open();
+        });
+
+
+        self.messagebar = app.messagebar.create({
+          el: page.$el.find('.messagebar'),
+
+          attachments: []
+        });
+
+
+        self.messages = app.messages.create({
+          el: page.$el.find('.messages'),
+          on:  {
+            change: function () {
+              console.log('Textarea value changed')
+            }
+          },
+
+          firstMessageRule: function (message, previousMessage, nextMessage) {
+            if (message.isTitle) return false;
+            if (!previousMessage || previousMessage.type !== message.type || previousMessage.name !== message.name) return true;
+            return false;
+          },
+          lastMessageRule: function (message, previousMessage, nextMessage) {
+            if (message.isTitle) return false;
+            if (!nextMessage || nextMessage.type !== message.type || nextMessage.name !== message.name) return true;
+            return false;
+          },
+          tailMessageRule: function (message, previousMessage, nextMessage) {
+            if (message.isTitle) return false;
+            if (!nextMessage || nextMessage.type !== message.type || nextMessage.name !== message.name) return true;
+            return false;
+          }
+
+        });
+
+
+        //console.log("Build chat window from localStorage.getItem('messages"+to_user_id+"')");
+
+        if(localStorage.getItem('messages'+to_user_id)){
+
+          //console.log("localStorage.getItem('messages"+to_user_id+"') NOT empty");
+
+          self.messages.addMessages(JSON.parse(localStorage.getItem('messages'+to_user_id)));
+
+          //console.log(JSON.parse(localStorage.getItem('messages'+localStorage.to_user_id)));
+
+        }
+        else
+        {
+          console.log("localStorage.getItem('messages"+to_user_id+"') IS empty");
+        }
+
+        localStorage.setItem('messages'+to_user_id, JSON.stringify(self.messages.messages));
+
+
+
+
+        function fn_check_isTyp(){
+
+        //console.log('Fn check_isTyp : ' + to_user_id);
+        //console.log('page.name > ' +page.name);
+        // console.log('virtualListChats.items');
+        // console.log(virtualListChats.items);
+
+              app.request.promise.post('https://app.phone403.com/php/check_isTyp.php', { from_user_id:localStorage.getItem("from_user_id"),to_user_id:to_user_id})
+                .then(function (result) {
+                  //console.log(to_user_id + " : "  + result);
+                  // console.log(result);
+
+                  var obj = JSON.parse(result)
+                  //console.log(obj);
+
+                  if(obj){
+                    // console.log('active:'+obj.active);
+                    //console.log('is_type:'+obj.is_type);
+
+                          var lastseen = moment(obj.last_activity).format("dddd, MMMM D, HH:mm");
+                          $('.lastseen').html(lastseen);
+
+                          if(obj.active === '1'){
+
+                            //console.log(obj.to_user_id + ' : is Online');
+
+                            // $('.lastseen').html('online');
+                            $('.message-avatar').addClass('message-avatar-online');
+                            $('.container').addClass('online');
+
+                          }
+
+                          else {
+                            // $('.lastseen').html(lastseen);
+                            $('.message-avatar').removeClass('message-avatar-online');
+                            $('.container').removeClass('online');
+
+
+                          }
+
+                          if(obj.is_type === 'yes'){
+
+                            console.log('obj.is_type === yes');
+                            $('.lastseen').hide();
+                            $('.typing').show();
+
+                          }
+                          else {
+                            $('.lastseen').show();
+                            $('.typing').hide();
+
+
+
+                          }
+
+                        // setTimeout(function(){
+                        //   self.messages.hideTyping();
+                        // },4000);
+                      }
+                  });
+
+        }
+
+
+
+        function fn_check_messStatus(){
+              //console.log('check_messStatus');
+              app.request.promise.post('https://app.phone403.com/php/check_messStatus.php', { from_user_id:localStorage.getItem("from_user_id"),to_user_id:to_user_id})
+                .then(function (result) {
+                  // console.log('result');
+                  // console.log(result);
+
+                  if(result){
+
+
+                  var newdata = JSON.parse(result)
+                  //console.log(newdata);
+                  //
+
+                  // console.log('chat_message_log: '+newdata.chat_message_log);
+                  // console.log('to_user_id: '+newdata.to_user_id);
+                  // console.log('from_user_id: '+newdata.from_user_id);
+                  // console.log('timestamp: '+newdata.timestamp);
+                  // console.log('chat_message_status: '+newdata.chat_message_status);
+                  // console.log('chat_message_id: '+newdata.chat_message_id);
+
+
+                  var stdata = JSON.parse(localStorage.getItem('messages'+to_user_id));
+
+                  //console.log(stdata);
+
+                  var objIndex = stdata.findIndex((x => x.chat_message_id == newdata.chat_message_id));
+
+                  console.log('objIndex : ' +objIndex);
+
+                  if(objIndex != '-1')
+                  {
+
+                  stdata[objIndex].chat_message_status = newdata.chat_message_status;
+
+                  if(newdata.chat_message_status === '0'){
+                    stdata[objIndex].footer = 'pending';
+                    var update_message_status = '1';
+                  }
+                  if(newdata.chat_message_status === '1'){
+                    stdata[objIndex].footer = 'sent';
+                    var update_message_status = '2';
+                  }
+                  if(newdata.chat_message_status === '2'){
+                    stdata[objIndex].footer = 'delivered';
+                    var update_message_status = '3';
+                  }
+                  if(newdata.chat_message_status === '3'){
+                    stdata[objIndex].footer = 'read';
+                    var update_message_status = '4';
+                  }
+
+
+                  var messageDumpSent = {
+
+                                to_user_id:localStorage.to_user_id,
+                                from_user_id:localStorage.from_user_id,
+                                chat_message:stdata[objIndex].text,
+                                timestamp:stdata[objIndex].now,
+                                status:stdata[objIndex].chat_message_status,
+                                text: stdata[objIndex].text,
+                                header:stdata[objIndex].header,
+                                footer:stdata[objIndex].footer,
+                                name:stdata[objIndex].name,
+                                avatar:stdata[objIndex].avatar,
+                                type:'sent',
+                                textHeader:stdata[objIndex].textHeader,
+                                textFooter:stdata[objIndex].textFooter,
+                                image:stdata[objIndex].image,
+                                imageSrc:stdata[objIndex].imageSrc,
+                                isTitle:stdata[objIndex].isTitle,
+                                cssClass:stdata[objIndex].cssClass,
+                                attrs:stdata[objIndex].attrs,
+                                chat_message_id:stdata[objIndex].chat_message_id,
+                                chat_message_status:stdata[objIndex].chat_message_status
+
+                  };
+
+                  self.messages.removeMessage(objIndex);
+                  self.messages.addMessage(messageDumpSent, false);
+
+                  localStorage.setItem('messages'+localStorage.to_user_id, JSON.stringify(self.messages.messages));
+
+
+// change data on server
+
+
+                  app.request.promise.post('https://app.phone403.com/php/update_messStatus.php', {
+                    from_user_id:localStorage.getItem("from_user_id"),
+                    to_user_id:to_user_id,
+                    update_message_status:update_message_status,
+                    chat_message_id:stdata[objIndex].chat_message_id })
+                    .then(function (result) {
+                      console.log('update_messStatus.php result : ' +result)
+
+                    });
+
+                  }
+
+                  else {
+
+                    console.log('NO UPDATES');
+                  }
+
+                }
+        });
+    }
+
+
+
+        fn_check_isTyp();
+        fn_check_messStatus();
+
+        var check_isTyp = setInterval(function(){
+          fn_check_isTyp();
+        },5000);
+
+        var check_messStatus = setInterval(function(){
+          fn_check_messStatus();
+        },5000);
+
+
+
+
+
+
+
+      },
+    }
+
+
+  }
+
+
+
+</script>

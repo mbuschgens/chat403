@@ -1,0 +1,6 @@
+.contactform-messages {
+    display: none;
+}
+.active {
+    display: block;
+}

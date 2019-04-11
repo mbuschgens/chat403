@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html class="theme-dark" lang="en">
+<!-- <html lang="en"> -->
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, viewport-fit=cover">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="theme-color" content="#2196f3">
+  <meta http-equiv="Content-Security-Policy" content="default-src * 'self' 'unsafe-inline' 'unsafe-eval' data: gap:">
+  <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;"> -->
+
+  <title>403</title>
+
+
+
+  <link rel="stylesheet" href="css/framework7.bundle.min.css">
+  <link rel="stylesheet" href="css/index.css" >
+
+
+  <link rel="stylesheet" href="css/app.css">
+
+
+  <link rel="apple-touch-icon" href="img/f7-icon-square.png">
+  <link rel="icon" href="img/f7-icon.png">
+</head>
+<body>
+  <div id="app">
+    <div class="statusbar"></div>
+
+    <div class="panel panel-left panel-cover">
+      <div class="page">
+        <div class="page-content">
+          <div class="block-title">LOGO</div>
+          <div class="block">
+            <p>This is a left side panel. You can close it by clicking outsite or on this link: <a href="#" class="panel-close">close me</a>. You can put here anything, even another isolated view like in <a href="#" data-panel="right" class="panel-open">Right Panel</a></p>
+          </div>
+          <div class="block-title">Main View Navigation</div>
+          <div class="list links-list">
+            <ul>
+
+              <li>
+                <a href="/messages/" class="panel-close">Messages</a>
+              </li>
+
+              <!-- <li>
+                <a href="/push/" class="panel-close">Push</a>
+              </li>
+
+
+
+              <li>
+                <a href="/accordion/" class="panel-close">Accordion</a>
+              </li>
+              <li>
+                <a href="/action-sheet/" class="panel-close">Action Sheet</a>
+              </li>
+              <li>
+                <a href="/badge/" class="panel-close">Badge</a>
+              </li>
+              <li>
+                <a href="/buttons/" class="panel-close">Buttons</a>
+              </li>
+              <li>
+                <a href="/cards/" class="panel-close">Cards</a>
+              </li>
+              <li>
+                <a href="/checkbox/" class="panel-close">Checkbox</a>
+              </li>
+              <li>
+                <a href="/chips/" class="panel-close">Chips/Tags</a>
+              </li>
+              <li>
+                <a href="/contacts-list/" class="panel-close">Contacts List</a>
+              </li>
+              <li>
+                <a href="/data-table/" class="panel-close">Data Table</a>
+              </li> -->
+            </ul>
+          </div>
+          <div class="block">
+            <span id="token"></span>
+            <span id="tokenFound" style="display:none"></span>
+            <h3>Try locally to simulate notifications</h3>
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="panel panel-right panel-reveal">
+      <div class="view view-init view-right" name="right" data-url="/">
+        <div class="page">
+          <div class="navbar">
+            <div class="navbar-inner sliding">
+              <div class="title">Right Panel</div>
+            </div>
+          </div>
+          <div class="page-content">
+            <div class="block">
+              <p>This is a right side panel. You can close it by clicking outsite or on this link: <a href="#" class="panel-close">close me</a>. You can put here anything, even another isolated view.</p>
+            </div>
+            <div class="block-title">Panel Navigation</div>
+            <div class="list links-list">
+              <ul>
+                <li><a href="/panel-right-1/">Right panel page 1</a></li>
+                <li><a href="/panel-right-2/">Right panel page 2</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+
+    <div class="view view-main view-init safe-areas" data-master-detail-breakpoint="800" data-url="/">
+
+
+      <div class="page" data-name="index">
+
+        <div class="navbar">
+          <div class="navbar-inner">
+
+
+            <!-- <div class="left">
+              <a href="#" class="link icon-only panel-open" data-panel="left">
+                <i class="icon f7-icons if-not-md">menu</i>
+                <i class="icon material-icons md-only">menu</i>
+              </a>
+            </div> -->
+            <div class="left">
+              <a href="#" class="link icon-only panel-open" data-panel="left">
+                <i class="icon f7-icons ios-only">menu</i>
+                <i class="icon material-icons md-only">menu</i>
+              </a>
+            </div>
+
+            <div class="title sliding">Recente Chats</div>
+
+            <div class="right">
+              <a class="link icon-only searchbar-enable chats" data-searchbar=".searchbar-chats" >
+                <i class="icon f7-icons if-not-md">search</i>
+                <i class="icon material-icons md-only">search</i>
+              </a>
+              <a class="link icon-only searchbar-enable contacts" data-searchbar=".searchbar-contacts" style="display:none;">
+                <i class="icon f7-icons if-not-md">search</i>
+                <i class="icon material-icons md-only">search</i>
+              </a>
+            </div>
+
+
+
+            <form data-search-container=".virtual-list-chats" data-search-in="li" data-search-in=".item-title" class="searchbar searchbar-expandable searchbar-chats searchbar-init">
+              <div class="searchbar-inner">
+                <div class="searchbar-input-wrap">
+                  <input type="search" placeholder="Search components"/>
+                  <i class="searchbar-icon"></i>
+                  <span class="input-clear-button"></span>
+                </div>
+                <span class="searchbar-disable-button if-not-aurora">Cancel</span>
+              </div>
+            </form>
+
+
+            <form data-search-container=".virtual-list-contacts" data-search-in="li" data-search-in=".item-title" class="searchbar searchbar-expandable searchbar-contacts searchbar-init">
+              <div class="searchbar-inner">
+                <div class="searchbar-input-wrap">
+                  <input type="search" placeholder="Search components"/>
+                  <i class="searchbar-icon"></i>
+                  <span class="input-clear-button"></span>
+                </div>
+                <span class="searchbar-disable-button if-not-aurora">Cancel</span>
+              </div>
+            </form>
+
+
+          </div>
+        </div>
+
+        <div id="floatingButtonAddChat" style="display:block" class="fab fab-right-bottom">
+          <a href="#"><i class="icon f7-icons">edit</i></a>
+        </div>
+
+        <div id="floatingButtonAddContact" style="display:none" class="fab fab-right-bottom">
+          <a href="#"><i class="icon f7-icons">person_round</i></a>
+        </div>
+
+        <div class="toolbar tabbar toolbar-top">
+          <div class="toolbar-inner">
+            <a href="#tab-chats" class="tab-link tab-chats tab-link-active"><i class="icon f7-icons">chat</i></a>
+            <a href="#tab-contacts" class="tab-link tab-contacts"><i class="icon f7-icons">persons</i></a>
+          </div>
+        </div>
+
+                  <div id="tabs" class="tabs">
+
+                    <div id="tab-chats" class="page-content tab tab-chats tab-active">
+                      <div class="list no-hairlines no-hairlines-between contacts-list media-list links-list virtual-list virtual-list-chats search-list searchbar-found"></div>
+
+
+                       <div class="list simple-list searchbar-not-found">
+                        <ul>
+                          <li>Nothing found</li>
+                        </ul>
+                      </div>
+
+                    </div>
+
+                    <div id="tab-contacts" class="page-content tab tab-contacts">
+                      <div class="list no-hairlines no-hairlines-between contacts-list media-list links-list virtual-list virtual-list-contacts search-list searchbar-found"></div>
+
+
+                       <div class="list simple-list searchbar-not-found">
+                        <ul>
+                          <li>Nothing found</li>
+                        </ul>
+                      </div>
+
+                    </div>
+
+                  </div>
+
+<!--
+                 <span id="token"></span>
+                  <span id="tokenFound" style="display:none"></span>
+                  <h3>Try locally to simulate notifications</h3> -->
+
+                    <form id="notificationOptionsForm">
+                      <div>
+                          <label>
+                              Notification Style
+                              <select id="notificationStyle">
+                                  <option value="simple">Simple</option>
+                                  <option value="multipleLines">Multiple Lines</option>
+                                  <option value="bigText">Big Text</option>
+                                  <option value="bigPicture">Big Picture</option>
+                              </select>
+                          </label>
+                      </div>
+                      <div class="style-all">
+                          <button class="nullify">Disable</button>
+                          <label>Id
+                              <input name="id" type="number" value="999" />
+                          </label>
+                      </div>
+                      <div class="style-all">
+                          <button class="nullify">Disable</button>
+                          <label>Title
+                              <input name="title" value="App Example Title" />
+                          </label>
+                      </div>
+                      <div class="style-simple">
+                          <button class="nullify">Disable</button>
+                          <label>Text
+                              <input name="text" value="Message text" />
+                          </label>
+                      </div>
+                      <div class="style-multipleLines">
+                          <button class="nullify">Disable</button>
+                          <label>Text Lines
+                              <textarea name="textLines">Text line 1
+                Text line 2
+                Text line 3
+                Text line 4
+                Text line 5</textarea>
+                          </label>
+                      </div>
+                      <div class="style-multipleLines style-bigText style-bigPicture">
+                          <button class="nullify">Disable</button>
+                          <label>Summary
+                              <input name="summary" value="Summary test" />
+                          </label>
+                      </div>
+                      <div class="style-bigText">
+                          <button class="nullify">Disable</button>
+                          <label>Big Text
+                          <textarea name="bigText">Big text line 1
+                Big text line 2 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris mollis urna sed nisl venenatis, a tincidunt orci iaculis. In hac habitasse platea dictumst. Nulla quis hendrerit risus. Morbi neque lectus, laoreet quis dui quis, luctus blandit mauris. Sed ullamcorper risus et lorem facilisis, sit amet tristique nulla rutrum. Vivamus auctor pulvinar ligula, tempor lacinia arcu commodo in. Ut condimentum dolor ac felis venenatis, sit amet cursus erat accumsan. Aliquam a justo elit. Maecenas dignissim suscipit ipsum, nec laoreet velit.</textarea>
+                          </label>
+                      </div>
+                      <div class="style-bigPicture">
+                          <button class="nullify">Disable</button>
+                          <label>Big Picture
+                              <input name="bigPicture" value="https://cloud.githubusercontent.com/assets/7321362/24875178/1e58d2ec-1ddc-11e7-96ed-ed8bf011146c.png" />
+                          </label>
+                      </div>
+                      <div class="style-all">
+                          <button class="nullify">Disable</button>
+                          <label>Small Icon
+                              <input name="smallIcon" value="mipmap/icon" />
+                          </label>
+                      </div>
+                      <div class="style-all">
+                          <button class="nullify">Disable</button>
+                          <label>Large Icon
+                              <input name="largeIcon" value="https://avatars2.githubusercontent.com/u/1174345?v=3&s=96" />
+                          </label>
+                      </div>
+                      <div class="style-all">
+                          <button class="nullify">Disable</button>
+                          <label>Auto Cancel
+                              <input name="autoCancel" type="checkbox" checked />
+                          </label>
+                      </div>
+                      <div id="notificationOptionsVibrationOptionDiv">
+                          <button class="nullify">Disable</button>
+                          <label>Vibration
+                              <select id="notificationOptionsVibrationOption">
+                                  <option value="true">Default</option>
+                                  <option value="false">Disabled</option>
+                                  <option value="custom">Custom</option>
+                              </select>
+                          </label>
+                      </div>
+                      <div id="notificationOptionsCustomVibrate">
+                          <button class="nullify" style="visibility:hidden">Disable</button>
+                          <label>Vibrate As
+                              <input value="[200, 300, 200, 300]" />
+                          </label>
+                      </div>
+                      <div class="style-all">
+                          <button class="nullify">Disable</button>
+                          <label>Color
+                              <input name="color" type="color" value="#0000ff" />
+                          </label>
+                      </div>
+                      <div id="notificationOptionsSoundOptionDiv">
+                          <button class="nullify">Disable</button>
+                          <label>Sound
+                              <select id="notificationOptionsSoundOption">
+                                  <option value="true">Default</option>
+                                  <option value="false">Disabled</option>
+                                  <option value="resource">Local Resource</option>
+                                  <option value="online">From the Web</option>
+                              </select>
+                          </label>
+                      </div>
+                      <div id="notificationOptionsResourceSound">
+                          <button class="nullify" style="visibility:hidden">Disable</button>
+                          <label>Local Sound
+                              <input value="res://raw/lost_european_the_beginning_of_the_end_mp3" />
+                          </label>
+                      </div>
+                      <div id="notificationOptionsOnlineSound">
+                          <button class="nullify" style="visibility:hidden">Disable</button>
+                          <label>Online Sound
+                              <input value="http://tindeck.com/download/pro/yjuow/Not_That_Guy.mp3" />
+                          </label>
+                      </div>
+                      <div class="style-all">
+                          <button class="nullify">Disable</button>
+                          <label>Heads-up
+                              <input name="headsUp" type="checkbox" />
+                          </label>
+                      </div>
+                      <div class="style-all">
+                          <button class="nullify">Disable</button>
+                          <label>Open app
+                              <input name="openApp" type="checkbox" />
+                          </label>
+                      </div>
+                      <div class="style-all">
+                          <button class="nullify">Disable</button>
+                          <label>Channel Id
+                              <input name="channelId" type="text" value="notification" />
+                          </label>
+                      </div>
+                      <div class="style-all">
+                          <button class="nullify">Disable</button>
+                          <label>Channel Name
+                              <input name="channelName" type="text" value="Notification" />
+                          </label>
+                      </div>
+                      <div class="style-all">
+                          <button class="nullify">Disable</button>
+                          <label>Channel Description
+                              <input name="channelDescription" type="text" value="Default notification" />
+                          </label>
+                      </div>
+                      <button type="submit">Show Notification</button>
+                      <button type="button" id="updateGeneratedCodeButton">Show/Update Code</button>
+                      <button type="button" id="saveOptionsLocally">Save Options Locally</button>
+                  </form>
+
+
+                  <pre id="generatedCode"></pre>
+      </div>
+    </div>
+
+
+    <!-- Login Screen -->
+    <div class="login-screen" id="my-login-screen">
+      <div class="view">
+        <div class="page">
+          <div class="page-content login-screen-content">
+            <div class="login-screen-title">403</div>
+            <div class="list">
+              <ul>
+
+                <!-- <li class="item-content item-input">
+                  <div class="item-inner">
+                    <div class="item-title item-floating-label">Email</div>
+                    <div class="item-input-wrap">
+                      <input type="email" name="email" placeholder="Your Email">
+                    </div>
+                  </div>
+                </li> -->
+
+                <!-- <input type="hidden" name="user_id" value="AABBCCDD"> -->
+
+
+
+                    <li>
+                      <label class="item-radio item-content">
+                        <!-- Radio input -->
+                        <input type="radio" name="from_user_id" value="99DD88FF"/ >
+                        <!-- Radio icon -->
+                        <i class="icon icon-radio"></i>
+                        <div class="item-inner">
+                          <!-- Radio Title -->
+                          <div class="item-title">99DD88FF iMac Chrome</div>
+                        </div>
+                      </label>
+                    </li>
+                    <!-- Another radio item -->
+                    <li>
+                      <label class="item-radio item-content">
+                        <!-- Checked by default -->
+                        <input type="radio" name="from_user_id" value="AABBCCDD" />
+                        <i class="icon icon-radio"></i>
+                        <div class="item-inner">
+                          <div class="item-title">AABBCCDD MacBook</div>
+                        </div>
+                      </label>
+                    </li>
+
+                    <li>
+                      <label class="item-radio item-content">
+                        <!-- Checked by default -->
+                        <input type="radio" name="from_user_id" value="A8JE3NSR" />
+                        <i class="icon icon-radio"></i>
+                        <div class="item-inner">
+                          <div class="item-title">A8JE3NSR Samsung</div>
+                        </div>
+                      </label>
+                    </li>
+
+                    <li>
+                      <label class="item-radio item-content">
+                        <!-- Checked by default -->
+                        <input type="radio" name="from_user_id" value="NSS7KK23" />
+                        <i class="icon icon-radio"></i>
+                        <div class="item-inner">
+                          <div class="item-title">NSS7KK23 iMac safari</div>
+                        </div>
+                      </label>
+                    </li>
+
+                    <li>
+                      <label class="item-radio item-content">
+                        <!-- Checked by default -->
+                        <input type="radio" name="from_user_id" value="MSSS522B" />
+                        <i class="icon icon-radio"></i>
+                        <div class="item-inner">
+                          <div class="item-title">MSSS522B MacBook safari</div>
+                        </div>
+                      </label>
+                    </li>
+
+                    <li>
+                      <label class="item-radio item-content">
+                        <!-- Checked by default -->
+                        <input type="radio" name="from_user_id" value="MSSS522B" />
+                        <i class="icon icon-radio"></i>
+                        <div class="item-inner">
+                          <div class="item-title">MSSS522B free</div>
+                        </div>
+                      </label>
+                    </li>
+
+                    <li>
+                      <label class="item-radio item-content">
+                        <!-- Checked by default -->
+                        <input type="radio" name="from_user_id" value="D89DH27D" />
+                        <i class="icon icon-radio"></i>
+                        <div class="item-inner">
+                          <div class="item-title">D89DH27D free</div>
+                        </div>
+                      </label>
+                    </li>
+
+                    <li>
+                      <label class="item-radio item-content">
+                        <!-- Checked by default -->
+                        <input type="radio" name="from_user_id" value="0DHE61HS" />
+                        <i class="icon icon-radio"></i>
+                        <div class="item-inner">
+                          <div class="item-title">0DHE61HS free</div>
+                        </div>
+                      </label>
+                    </li>
+                <!-- <li class="item-content item-input">
+                  <div class="item-inner">
+                    <div class="item-title item-floating-label">Password</div>
+                    <div class="item-input-wrap">
+                      <input type="password" name="password" placeholder="Your password">
+                    </div>
+                  </div>
+                </li> -->
+
+
+              </ul>
+
+
+            </div>
+            <div class="list">
+              <ul>
+                <li>
+                  <a href="#" class="item-link list-button login-button">Login</a>
+                </li>
+              </ul>
+              <div class="block-footer">403 Secure chat<BR>2019</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+
+  </div>
+
+
+
+
+  <script src="js/framework7.bundle.min.js"></script>
+  <script src="js/framework7.debug.js"></script>
+
+  <script src="cordova.js"></script>
+  <script src="js/index.js"></script>
+  <script src="js/simulation.js"></script>
+
+  <script src="js/howler.min.js"></script>
+  <script src="js/moment.js"></script>
+  <script src="js/jsencrypt.min.js"></script>
+  <script src="js/crypto-worker.js"></script>
+
+  <script src="js/routes.js"></script>
+  <script src="js/app.js"></script>
+
+
+
+</body>
+</html>

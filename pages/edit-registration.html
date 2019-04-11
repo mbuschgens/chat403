@@ -1,0 +1,1370 @@
+<div class="page" data-name="edit-registration">
+  <div class="navbar">
+    <div class="navbar-inner sliding">
+      <div class="left">
+        <a href="#" class="link back">
+          <i class="icon icon-back"></i>
+          <span class="ios-only">Back</span>
+        </a>
+      </div>
+      <div class="title">Edit Registration</div>
+    </div>
+  </div>
+
+
+
+
+  <div class="page-content">
+
+  <div class="block">
+  The person is storaged under number : <span id="regId" class="regId"></span> and registrate on : <span id="dataOfRegistration" class="dataOfRegistration"></span>
+  </div>
+
+  <div class="block">
+    <div class="row">
+      <div class="col-33"><button class="col button button-outline btnPrint" >Print Personal Data</button></div>
+      <div class="col-33"><button class="col button button-outline btnUpload" >Upload CV or Photo</button></div>
+      <div class="col-33"><button class="col button button-outline btnUpdateData" >SAVE DATA</button></div>
+    </div>
+  </div>
+
+
+  <div class="card data-table" id="dvContainer" style="display: none">
+          <div id="divHtml" class="divHtml" ></div>
+  </div>
+
+
+
+  <!-- form-store-data -->
+  <form class="form-store-data" id="edit-registration">
+
+  <input type="hidden" name="regId" id="regId" value="">
+
+  <input type="hidden" name="recruiter" id="recruiter" value="">
+  <input type="hidden" name="dataOfRegistration" id="dataOfRegistration" value="">
+
+    <div class="list accordion-list">
+      <ul>
+
+        <li class="accordion-item item1">
+          <a href="#" class="item-content item-link">
+            <div class="item-inner">
+              <div class="item-title">1. Registration</div>
+            </div>
+          </a>
+
+          <div class="accordion-item-content">
+            <div class="block">
+              <ul>
+
+
+
+
+              <li>
+                <div class="item-content">
+                  <div class="item-inner">
+                    <div class="item-title ">Available</div>
+                    <div class="item-after">
+                      <label class="toggle toggle-init">
+                        <input type="checkbox" name="available" ><i class="toggle-icon"></i>
+                        <div class="checkbox"></div>
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </li>
+
+
+                <li>
+                  <div class="item-content item-input">
+                    <div class="item-inner">
+                      <div class="item-title item-floating-label">First name</div>
+                      <div class="item-input-wrap">
+                        <input type="text" name="firstName" placeholder="First name" required validate/>
+                        <span class="input-clear-button"></span>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div class="item-content item-input">
+                    <div class="item-inner">
+                      <div class="item-title item-floating-label">Sure name</div>
+                      <div class="item-input-wrap">
+                        <input type="text" name="sureName"placeholder="Sure name" required validate/>
+                        <span class="input-clear-button"></span>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div class="item-content item-input">
+                    <div class="item-inner">
+                      <div class="item-title item-floating-label">E-mail</div>
+                      <div class="item-input-wrap">
+                        <input type="email" name="eMail" placeholder="E-mail" required validate/>
+                        <span class="input-clear-button"></span>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div class="item-content item-input">
+                    <div class="item-inner">
+                      <div class="item-title item-floating-label">Phone</div>
+                      <div class="item-input-wrap">
+                        <input type="tel" name="phone" placeholder="Phone" required validate/>
+                        <span class="input-clear-button"></span>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div class="item-content item-input">
+                    <div class="item-inner">
+                      <div class="item-title item-floating-label">Gender</div>
+                      <div class="item-input-wrap">
+                        <select name="gender">
+                          <option>Male</option>
+                          <option>Female</option>
+                        </select>
+                        <span class="input-clear-button"></span>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div class="item-content item-input">
+                    <div class="item-inner">
+                      <div class="item-title item-label">Birth date</div>
+                      <div class="item-input-wrap">
+                        <input type="date" name="birthDay" placeholder="Birth day" value="" required validate/>
+                        <span class="input-clear-button"></span>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div class="item-content item-input">
+                    <div class="item-inner">
+                      <div class="item-title item-floating-label">Place of birth</div>
+                      <div class="item-input-wrap">
+                        <input type="text" name="placeOfBirth" placeholder="Place of birth" required validate/>
+                        <span class="input-clear-button"></span>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div class="item-content item-input">
+                    <div class="item-inner">
+                      <div class="item-title item-floating-label">Nationality</div>
+                      <div class="item-input-wrap">
+                        <select name="nationality">
+                          <option>Portugal</option>
+                          <option>Hollandia</option>
+                          <option>Spanish</option>
+                          <option>Brasil</option>
+                          <option>Different</option>
+                        </select>
+                        <span class="input-clear-button"></span>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div class="item-content item-input">
+                    <div class="item-inner">
+                      <div class="item-title item-floating-label">Marital status</div>
+                      <div class="item-input-wrap">
+                        <select name="maritalStatus">
+                          <option>Single</option>
+                          <option>Married</option>
+                          <option>Divorced</option>
+                          <option>Widow</option>
+                        </select>
+                        <span class="input-clear-button"></span>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+        </li>
+
+
+
+
+
+
+
+        <li class="accordion-item"><a href="#" class="item-content item-link">
+            <div class="item-inner">
+
+              <div class="item-title">2. Registration living</div>
+
+            </div></a>
+
+          <div class="accordion-item-content">
+            <div class="block">
+
+
+              <ul>
+
+                <li>
+                  <div class="item-content item-input">
+                    <div class="item-inner">
+                      <div class="item-title item-floating-label">Address</div>
+                      <div class="item-input-wrap">
+                        <input type="text" name="address" placeholder="Address"/>
+                        <span class="input-clear-button"></span>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+
+                <li>
+                  <div class="item-content item-input">
+                    <div class="item-inner">
+                      <div class="item-title item-floating-label">House number</div>
+                      <div class="item-input-wrap">
+                        <input type="text" name="houseNumber" placeholder="House number"/>
+                        <span class="input-clear-button"></span>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+
+                <li>
+                  <div class="item-content item-input">
+                    <div class="item-inner">
+                      <div class="item-title item-floating-label">Zip code</div>
+                      <div class="item-input-wrap">
+                        <input type="text" name="zipCode" placeholder="Zip code"/>
+                        <span class="input-clear-button"></span>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+
+                <li>
+                  <div class="item-content item-input">
+                    <div class="item-inner">
+                      <div class="item-title item-floating-label">City</div>
+                      <div class="item-input-wrap">
+                        <input type="tel" name="city" placeholder="City"/>
+                        <span class="input-clear-button"></span>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+
+                <li>
+                  <div class="item-content item-input">
+                    <div class="item-inner">
+                      <div class="item-title item-floating-label">Country</div>
+                      <div class="item-input-wrap">
+                        <select name="country">
+                          <option>Portugal</option>
+                          <option>Hollandia</option>
+                        </select>
+                        <span class="input-clear-button"></span>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+
+
+              </ul>
+
+              <div class="block-title">Language indication score 1 till 5</div>
+
+              <div class="block">
+                <div class="row">
+
+                  <div class="col">English Speaking
+                  <div class="list">
+                      <ul>
+                      <li>
+                      <label class="item-radio item-content">
+                        <input type="radio" name="englishSpeaking" value="1" />
+                        <i class="icon icon-radio"></i>
+                        <div class="item-inner">
+                          <div class="item-title">1</div>
+                        </div>
+                      </label>
+                      </li>
+                      <li>
+                      <label class="item-radio item-content">
+                        <input type="radio" name="englishSpeaking" value="2"/>
+                        <i class="icon icon-radio"></i>
+                        <div class="item-inner">
+                          <div class="item-title">2</div>
+                        </div>
+                      </label>
+                      </li>
+                      <li>
+                      <label class="item-radio item-content">
+                        <input type="radio" name="englishSpeaking" value="3"/>
+                        <i class="icon icon-radio"></i>
+                        <div class="item-inner">
+                          <div class="item-title">3</div>
+                        </div>
+                      </label>
+                      </li>
+                      <li>
+                      <label class="item-radio item-content">
+                        <input type="radio" name="englishSpeaking" value="4"/>
+                        <i class="icon icon-radio"></i>
+                        <div class="item-inner">
+                          <div class="item-title">4</div>
+                        </div>
+                      </label>
+                      </li>
+                      <li>
+                      <label class="item-radio item-content">
+                        <input type="radio" name="englishSpeaking" value="5"/>
+                        <i class="icon icon-radio"></i>
+                        <div class="item-inner">
+                          <div class="item-title">5</div>
+                        </div>
+                      </label>
+                      </li>
+                      </ul>
+                  </div>
+                  </div>
+
+                  <div class="col">English Writing
+                  <div class="list">
+                      <ul>
+                      <li>
+                      <label class="item-radio item-content">
+                        <input type="radio" name="englishWriting" value="1" />
+                        <i class="icon icon-radio"></i>
+                        <div class="item-inner">
+                          <div class="item-title">1</div>
+                        </div>
+                      </label>
+                      </li>
+                      <li>
+                      <label class="item-radio item-content">
+                        <input type="radio" name="englishWriting" value="2"/>
+                        <i class="icon icon-radio"></i>
+                        <div class="item-inner">
+                          <div class="item-title">2</div>
+                        </div>
+                      </label>
+                      </li>
+                      <li>
+                      <label class="item-radio item-content">
+                        <input type="radio" name="englishWriting" value="3"/>
+                        <i class="icon icon-radio"></i>
+                        <div class="item-inner">
+                          <div class="item-title">3</div>
+                        </div>
+                      </label>
+                      </li>
+                      <li>
+                      <label class="item-radio item-content">
+                        <input type="radio" name="englishWriting" value="4"/>
+                        <i class="icon icon-radio"></i>
+                        <div class="item-inner">
+                          <div class="item-title">4</div>
+                        </div>
+                      </label>
+                      </li>
+                      <li>
+                      <label class="item-radio item-content">
+                        <input type="radio" name="englishWriting" value="5"/>
+                        <i class="icon icon-radio"></i>
+                        <div class="item-inner">
+                          <div class="item-title">5</div>
+                        </div>
+                      </label>
+                      </li>
+                      </ul>
+                  </div>
+                  </div>
+
+                  <div class="col">Dutch Speaking
+                  <div class="list">
+                      <ul>
+                      <li>
+                      <label class="item-radio item-content">
+                        <input type="radio" name="dutchSpeaking" value="1" />
+                        <i class="icon icon-radio"></i>
+                        <div class="item-inner">
+                          <div class="item-title">1</div>
+                        </div>
+                      </label>
+                      </li>
+                      <li>
+                      <label class="item-radio item-content">
+                        <input type="radio" name="dutchSpeaking" value="2"/>
+                        <i class="icon icon-radio"></i>
+                        <div class="item-inner">
+                          <div class="item-title">2</div>
+                        </div>
+                      </label>
+                      </li>
+                      <li>
+                      <label class="item-radio item-content">
+                        <input type="radio" name="dutchSpeaking" value="3"/>
+                        <i class="icon icon-radio"></i>
+                        <div class="item-inner">
+                          <div class="item-title">3</div>
+                        </div>
+                      </label>
+                      </li>
+                      <li>
+                      <label class="item-radio item-content">
+                        <input type="radio" name="dutchSpeaking" value="4"/>
+                        <i class="icon icon-radio"></i>
+                        <div class="item-inner">
+                          <div class="item-title">4</div>
+                        </div>
+                      </label>
+                      </li>
+                      <li>
+                      <label class="item-radio item-content">
+                        <input type="radio" name="dutchSpeaking" value="5"/>
+                        <i class="icon icon-radio"></i>
+                        <div class="item-inner">
+                          <div class="item-title">5</div>
+                        </div>
+                      </label>
+                      </li>
+                      </ul>
+                  </div>
+                  </div>
+
+                  <div class="col">Dutch Writing
+                  <div class="list">
+                      <ul>
+                      <li>
+                      <label class="item-radio item-content">
+                        <input type="radio" name="dutchWriting" value="1" />
+                        <i class="icon icon-radio"></i>
+                        <div class="item-inner">
+                          <div class="item-title">1</div>
+                        </div>
+                      </label>
+                      </li>
+                      <li>
+                      <label class="item-radio item-content">
+                        <input type="radio" name="dutchWriting" value="2"/>
+                        <i class="icon icon-radio"></i>
+                        <div class="item-inner">
+                          <div class="item-title">2</div>
+                        </div>
+                      </label>
+                      </li>
+                      <li>
+                      <label class="item-radio item-content">
+                        <input type="radio" name="dutchWriting" value="3"/>
+                        <i class="icon icon-radio"></i>
+                        <div class="item-inner">
+                          <div class="item-title">3</div>
+                        </div>
+                      </label>
+                      </li>
+                      <li>
+                      <label class="item-radio item-content">
+                        <input type="radio" name="dutchWriting" value="4"/>
+                        <i class="icon icon-radio"></i>
+                        <div class="item-inner">
+                          <div class="item-title">4</div>
+                        </div>
+                      </label>
+                      </li>
+                      <li>
+                      <label class="item-radio item-content">
+                        <input type="radio" name="dutchWriting" value="5"/>
+                        <i class="icon icon-radio"></i>
+                        <div class="item-inner">
+                          <div class="item-title">5</div>
+                        </div>
+                      </label>
+                      </li>
+                      </ul>
+                  </div>
+                  </div>
+                </div>
+              </div>
+
+
+
+            </div>
+          </div>
+        </li>
+
+        <li class="accordion-item"><a href="#" class="item-content item-link">
+            <div class="item-inner">
+
+              <div class="item-title">3. Registration details</div>
+            </div></a>
+
+          <div class="accordion-item-content">
+            <div class="block">
+
+              <ul>
+                <li>
+                  <div class="item-content item-input">
+                    <div class="item-inner">
+                      <div class="item-title item-floating-label">Dutch social number</div>
+                      <div class="item-input-wrap">
+                        <input type="text" name="dutchSocialNumber" placeholder="Dutch social number"/>
+                      <span class="input-clear-button"></span>
+                    </div>
+                    </div>
+                  </div>
+                </li>
+
+                <li>
+                  <div class="item-content item-input">
+                    <div class="item-inner">
+                      <div class="item-title item-floating-label">Portugal social number</div>
+                      <div class="item-input-wrap">
+                        <input type="text" name="portugalSocialNumber" placeholder="Portugal social number"/>
+                      <span class="input-clear-button"></span>
+                    </div>
+                    </div>
+                  </div>
+                </li>
+
+                <li>
+                  <div class="item-content item-input">
+                    <div class="item-inner">
+                      <div class="item-title item-floating-label">Passport number</div>
+                      <div class="item-input-wrap">
+                        <input type="text" name="passportNumber" placeholder="Passport number"/>
+                      <span class="input-clear-button"></span>
+                    </div>
+                    </div>
+                  </div>
+
+                  <div class="item-content item-input">
+                    <div class="item-inner">
+                      <div class="item-title item-label">Passport valid till</div>
+                      <div class="item-input-wrap">
+                          <input type="date" name="passportValidTill" value=""/>
+                      <span class="input-clear-button"></span>
+                    </div>
+                    </div>
+                  </div>
+                </li>
+
+                <li>
+                  <div class="item-content item-input">
+                    <div class="item-inner">
+                      <div class="item-title item-floating-label">Work / Residence number</div>
+                      <div class="item-input-wrap">
+                        <input type="text" name="workResidenceNumber" placeholder="Work / Residence number"/>
+                      <span class="input-clear-button"></span>
+                    </div>
+                    </div>
+                  </div>
+
+                  <div class="item-content item-input">
+                    <div class="item-inner">
+                      <div class="item-title item-label">Work / Residence valid till</div>
+                      <div class="item-input-wrap">
+                          <input type="date" name="workResidenceValidTill"  value=""/>
+                      <span class="input-clear-button"></span>
+                    </div>
+                    </div>
+                  </div>
+                </li>
+
+                <li>
+                  <div class="item-content item-input">
+                    <div class="item-inner">
+                      <div class="item-title item-floating-label">Driving license number</div>
+                      <div class="item-input-wrap">
+                        <input type="text" name="drivingLicenseNumber" placeholder="Driving license number"/>
+                      <span class="input-clear-button"></span>
+                    </div>
+                    </div>
+                  </div>
+
+                  <div class="item-content item-input">
+                    <div class="item-inner">
+                      <div class="item-title item-label">Driving license valid till</div>
+                      <div class="item-input-wrap">
+                        <input type="date" name="drivinglicenseValidTill"  value=""/>
+                      <span class="input-clear-button"></span>
+                    </div>
+                    </div>
+                  </div>
+
+
+
+
+                    <label class="item-checkbox item-content">
+                      <input type="checkbox" name="drivingLicenseB"/>
+                      <i class="icon icon-checkbox"></i>
+                      <div class="item-inner">
+                        <div class="item-title">Driving license B</div>
+                      </div>
+                    </label>
+
+                    <label class="item-checkbox item-content">
+                      <input type="checkbox" name="drivingLicenseC"/>
+                      <i class="icon icon-checkbox"></i>
+                      <div class="item-inner">
+                        <div class="item-title">Driving license C</div>
+                      </div>
+                    </label>
+
+                    <label class="item-checkbox item-content">
+                      <input type="checkbox" name="drivingLicenseCode95"/>
+                      <i class="icon icon-checkbox"></i>
+                      <div class="item-inner">
+                        <div class="item-title">Driving license CODE 95 / SMP</div>
+                      </div>
+                    </label>
+
+                  </li>
+              </ul>
+            </div>
+          </div>
+        </li>
+
+        <li class="accordion-item"><a href="#" class="item-content item-link">
+            <div class="item-inner">
+              <div class="item-title">4. Registration bank</div>
+            </div></a>
+          <div class="accordion-item-content">
+            <div class="block">
+              <ul>
+                <li>
+                  <div class="item-content item-input">
+                    <div class="item-inner">
+                      <div class="item-title item-floating-label">Country of Bank</div>
+                      <div class="item-input-wrap">
+                        <select name="countryOfBank">
+                          <option>Portugal</option>
+                          <option>Hollandia</option>
+                          <option>Spanish</option>
+                          <option>Brasil</option>
+                          <option>Different</option>
+                        </select>
+                        <span class="input-clear-button"></span>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+
+                <li>
+                  <div class="item-content item-input">
+                    <div class="item-inner">
+                      <div class="item-title item-floating-label">Name of Bank</div>
+                      <div class="item-input-wrap">
+                        <input type="text" name="nameOfBank" placeholder="Name of Bank"/>
+                        <span class="input-clear-button"></span>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+
+                <li>
+                  <div class="item-content item-input">
+                    <div class="item-inner">
+                      <div class="item-title item-floating-label">Bank Account number IBAN</div>
+                      <div class="item-input-wrap">
+                        <input type="text" name="bankAccountNumber" placeholder="Bank Account number IBAN"/>
+                        <span class="input-clear-button"></span>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+
+                <li>
+                  <div class="item-content item-input">
+                    <div class="item-inner">
+                      <div class="item-title item-floating-label">Bank Account on name of</div>
+                      <div class="item-input-wrap">
+                        <input type="text" name="bankAccountOnNameOf" placeholder="Bank Account on name of"/>
+                        <span class="input-clear-button"></span>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+
+                <li>
+                  <div class="item-content item-input">
+                    <div class="item-inner">
+                      <div class="item-title item-floating-label">Bank BIC</div>
+                      <div class="item-input-wrap">
+                        <input type="text" name="bankBIC" placeholder="Bank BIC"/>
+                        <span class="input-clear-button"></span>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+
+                <li>
+                  <div class="item-content item-input">
+                    <div class="item-inner">
+                      <div class="item-title item-floating-label">Salary indication full time 39h / week Netto</div>
+                      <div class="item-input-wrap">
+                        <input type="number" name="salaryIndication" placeholder="Salary indication"/>
+                        <span class="input-clear-button"></span>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </li>
+
+        <li class="accordion-item"><a href="#" class="item-content item-link">
+            <div class="item-inner">
+              <div class="item-title">5. Job selection</div>
+            </div></a>
+          <div class="accordion-item-content">
+            <div class="block">
+              <ul>
+                <li>
+                     <label class="item-radio item-content">
+                       <input type="radio" name="jobSelection" value="Truckdriver" checked />
+                       <i class="icon icon-radio"></i>
+                       <div class="item-inner">
+                         <div class="item-title">Truckdriver</div>
+                       </div>
+                     </label>
+                   </li>
+                   <li>
+                     <label class="item-radio item-content">
+                       <input type="radio" name="jobSelection" value="Cook"/>
+                       <i class="icon icon-radio"></i>
+                       <div class="item-inner">
+                         <div class="item-title">Cook</div>
+                       </div>
+                     </label>
+                   </li>
+                   <li>
+                     <label class="item-radio item-content">
+                       <input type="radio" name="jobSelection" value="Tieler"/>
+                       <i class="icon icon-radio"></i>
+                       <div class="item-inner">
+                         <div class="item-title">Tieler</div>
+                       </div>
+                     </label>
+                   </li>
+                   <li>
+                     <label class="item-radio item-content">
+                       <input type="radio" name="jobSelection" value="Pipefitter"/>
+                       <i class="icon icon-radio"></i>
+                       <div class="item-inner">
+                         <div class="item-title">Pipefitter</div>
+                       </div>
+                     </label>
+                   </li>
+
+                   <li>
+                     <label class="item-radio item-content">
+                       <input type="radio" name="jobSelection" value="Car machanic"/>
+                       <i class="icon icon-radio"></i>
+                       <div class="item-inner">
+                         <div class="item-title">Car machanic</div>
+                       </div>
+                     </label>
+                   </li>
+                   <li>
+                     <label class="item-radio item-content">
+                       <input type="radio" name="jobSelection" value="Souschef"/>
+                       <i class="icon icon-radio"></i>
+                       <div class="item-inner">
+                         <div class="item-title">Souschef</div>
+                       </div>
+                     </label>
+                   </li>
+                   <li>
+                     <label class="item-radio item-content">
+                       <input type="radio" name="jobSelection" value="Home painters"/>
+                       <i class="icon icon-radio"></i>
+                       <div class="item-inner">
+                         <div class="item-title">Home painters</div>
+                       </div>
+                     </label>
+                   </li>
+
+                   <li>
+                     <label class="item-radio item-content">
+                       <input type="radio" name="jobSelection" value="Home painters"/>
+                       <i class="icon icon-radio"></i>
+                       <div class="item-inner">
+                         <div class="item-title">ICT</div>
+                       </div>
+                     </label>
+                   </li>
+
+                   <li>
+                     <label class="item-radio item-content">
+                       <input type="radio" name="jobSelection" value="Home painters"/>
+                       <i class="icon icon-radio"></i>
+                       <div class="item-inner">
+                         <div class="item-title">Nurs</div>
+                       </div>
+                     </label>
+                   </li>
+              </ul>
+            </div>
+          </div>
+        </li>
+
+        <li class="accordion-item"><a href="#" class="item-content item-link">
+            <div class="item-inner">
+              <div class="item-title">6. Job selection experience</div>
+            </div></a>
+          <div class="accordion-item-content">
+            <div class="block">
+              <div class="block block-strong inset">
+                <p>
+                  If Truck driver, note with what truck he drive.<BR>
+                  If Cook note where he work hotel, resteurant, home.<BR>
+                  If ICT note like Admin on Miscrosoft platform or Java, C++ Programer Junior or Senior.<BR>
+                  If Car maganic note on what brand or cars.<BR>
+                  </p>
+              </div>
+
+              <ul>
+                <li>
+                  <div class="item-content item-input">
+                    <div class="item-inner">
+                      <div class="item-title item-floating-label">Job experience NOTE</div>
+                      <div class="item-input-wrap">
+                        <!-- <textarea placeholder="" name="jobSelectionExperience"></textarea> -->
+                        <input type="text" name="jobSelectionExperience" placeholder=""/>
+                        <span class="input-clear-button"></span>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </li>
+
+        <li class="accordion-item"><a href="#" class="item-content item-link">
+            <div class="item-inner">
+              <div class="item-title">7. Job selection additional</div>
+            </div></a>
+          <div class="accordion-item-content">
+            <div class="block">
+              <div class="block-title">Job 1 History</div>
+
+                    <div class="row">
+                      <div class="col">
+                          <div class="item-content item-input">
+                            <div class="item-inner">
+                              <div class="item-title item-label">Job From</div>
+                              <div class="item-input-wrap">
+                                <input type="date" name="job1HistoryFrom" value=""/>
+                                <span class="input-clear-button"></span>
+                              </div>
+                            </div>
+                          </div>
+                      </div>
+                      <div class="col">
+                          <div class="item-content item-input">
+                            <div class="item-inner">
+                              <div class="item-title item-label">Job Till</div>
+                              <div class="item-input-wrap">
+                                <input type="date" name="job1HistoryTill" value=""/>
+                                <span class="input-clear-button"></span>
+                              </div>
+                            </div>
+                          </div>
+                      </div>
+                    </div>
+
+                    <ul>
+                      <li>
+                        <div class="item-content item-input">
+                          <div class="item-inner">
+                            <div class="item-title item-floating-label">Function / Job</div>
+                            <div class="item-input-wrap">
+                              <input type="text" name="job1Function" placeholder="Function / Job"/>
+                              <span class="input-clear-button"></span>
+                            </div>
+                          </div>
+                        </div>
+                      </li>
+
+                      <li>
+                        <div class="item-content item-input">
+                          <div class="item-inner">
+                            <div class="item-title item-floating-label">Company / Project</div>
+                            <div class="item-input-wrap">
+                              <input type="text" name="job1CompanyProject" placeholder="Company / Project"/>
+                              <span class="input-clear-button"></span>
+                            </div>
+                          </div>
+                        </div>
+                      </li>
+                    </ul>
+
+              <div class="block-title">Job 2 History</div>
+                    <div class="row">
+                      <div class="col">
+                          <div class="item-content item-input">
+                            <div class="item-inner">
+                              <div class="item-title item-label">Job From</div>
+                              <div class="item-input-wrap">
+                                <input type="date" name="job2HistoryFrom" value=""/>
+                                <span class="input-clear-button"></span>
+                              </div>
+                            </div>
+                          </div>
+                      </div>
+                      <div class="col">
+                          <div class="item-content item-input">
+                            <div class="item-inner">
+                              <div class="item-title item-label">Job Till</div>
+                              <div class="item-input-wrap">
+                                <input type="date" name="job2HistoryTill" value=""/>
+                                <span class="input-clear-button"></span>
+                              </div>
+                            </div>
+                          </div>
+                      </div>
+                    </div>
+
+                    <ul>
+                      <li>
+                        <div class="item-content item-input">
+                          <div class="item-inner">
+                            <div class="item-title item-floating-label">Function / Job</div>
+                            <div class="item-input-wrap">
+                              <input type="text" name="job2Function" placeholder="Function / Job"/>
+                              <span class="input-clear-button"></span>
+                            </div>
+                          </div>
+                        </div>
+                      </li>
+
+                      <li>
+                        <div class="item-content item-input">
+                          <div class="item-inner">
+                            <div class="item-title item-floating-label">Company / Project</div>
+                            <div class="item-input-wrap">
+                              <input type="text" name="job2CompanyProject" placeholder="Company / Project"/>
+                              <span class="input-clear-button"></span>
+                            </div>
+                          </div>
+                        </div>
+                      </li>
+                    </ul>
+
+              <div class="block-title">Job 3 History</div>
+                    <div class="row">
+                      <div class="col">
+                          <div class="item-content item-input">
+                            <div class="item-inner">
+                              <div class="item-title item-label">Job From</div>
+                              <div class="item-input-wrap">
+                                <input type="date" name="job3HistoryFrom" value=""/>
+                                <span class="input-clear-button"></span>
+                              </div>
+                            </div>
+                          </div>
+                      </div>
+                      <div class="col">
+                          <div class="item-content item-input">
+                            <div class="item-inner">
+                              <div class="item-title item-label">Job Till</div>
+                              <div class="item-input-wrap">
+                                <input type="date" name="job3HistoryTill" value=""/>
+                                <span class="input-clear-button"></span>
+                              </div>
+                            </div>
+                          </div>
+                      </div>
+                    </div>
+
+                    <ul>
+                      <li>
+                        <div class="item-content item-input">
+                          <div class="item-inner">
+                            <div class="item-title item-floating-label">Function / Job</div>
+                            <div class="item-input-wrap">
+                              <input type="text" name="job3Function" placeholder="Function / Job"/>
+                              <span class="input-clear-button"></span>
+                            </div>
+                          </div>
+                        </div>
+                      </li>
+
+                      <li>
+                        <div class="item-content item-input">
+                          <div class="item-inner">
+                            <div class="item-title item-floating-label">Company / Project</div>
+                            <div class="item-input-wrap">
+                              <input type="text" name="job3CompanyProject" placeholder="Company / Project"/>
+                              <span class="input-clear-button"></span>
+                            </div>
+                          </div>
+                        </div>
+                      </li>
+                    </ul>
+
+                    <div class="block-title">Job 4 History</div>
+                          <div class="row">
+                            <div class="col">
+                                <div class="item-content item-input">
+                                  <div class="item-inner">
+                                    <div class="item-title item-label">Job From</div>
+                                    <div class="item-input-wrap">
+                                      <input type="date" name="job4HistoryFrom" value=""/>
+                                      <span class="input-clear-button"></span>
+                                    </div>
+                                  </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="item-content item-input">
+                                  <div class="item-inner">
+                                    <div class="item-title item-label">Job Till</div>
+                                    <div class="item-input-wrap">
+                                      <input type="date" name="job4HistoryTill" value=""/>
+                                      <span class="input-clear-button"></span>
+                                    </div>
+                                  </div>
+                                </div>
+                            </div>
+                          </div>
+
+                          <ul>
+                            <li>
+                              <div class="item-content item-input">
+                                <div class="item-inner">
+                                  <div class="item-title item-floating-label">Function / Job</div>
+                                  <div class="item-input-wrap">
+                                    <input type="text" name="job4Function" placeholder="Function / Job"/>
+                                    <span class="input-clear-button"></span>
+                                  </div>
+                                </div>
+                              </div>
+                            </li>
+
+                            <li>
+                              <div class="item-content item-input">
+                                <div class="item-inner">
+                                  <div class="item-title item-floating-label">Company / Project</div>
+                                  <div class="item-input-wrap">
+                                    <input type="text" name="job4CompanyProject" placeholder="Company / Project"/>
+                                    <span class="input-clear-button"></span>
+                                  </div>
+                                </div>
+                              </div>
+                            </li>
+                          </ul>
+
+                          <div class="block-title">Job 5 History</div>
+                                <div class="row">
+                                  <div class="col">
+                                      <div class="item-content item-input">
+                                        <div class="item-inner">
+                                          <div class="item-title item-label">Job From</div>
+                                          <div class="item-input-wrap">
+                                            <input type="date" name="job5HistoryFrom" value=""/>
+                                            <span class="input-clear-button"></span>
+                                          </div>
+                                        </div>
+                                      </div>
+                                  </div>
+                                  <div class="col">
+                                      <div class="item-content item-input">
+                                        <div class="item-inner">
+                                          <div class="item-title item-label">Job Till</div>
+                                          <div class="item-input-wrap">
+                                            <input type="date" name="job5HistoryTill" value=""/>
+                                            <span class="input-clear-button"></span>
+                                          </div>
+                                        </div>
+                                      </div>
+                                  </div>
+                                </div>
+
+                                <ul>
+                                  <li>
+                                    <div class="item-content item-input">
+                                      <div class="item-inner">
+                                        <div class="item-title item-floating-label">Function / Job</div>
+                                        <div class="item-input-wrap">
+                                          <input type="text" name="job5Function" placeholder="Function / Job"/>
+                                          <span class="input-clear-button"></span>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </li>
+
+                                  <li>
+                                    <div class="item-content item-input">
+                                      <div class="item-inner">
+                                        <div class="item-title item-floating-label">Company / Project</div>
+                                        <div class="item-input-wrap">
+                                          <input type="text" name="job5CompanyProject" placeholder="Company / Project"/>
+                                          <span class="input-clear-button"></span>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </li>
+                                </ul>
+            </div>
+          </div>
+        </li>
+
+        <li class="accordion-item"><a href="#" class="item-content item-link">
+            <div class="item-inner">
+              <div class="item-title">8. First impression</div>
+            </div></a>
+          <div class="accordion-item-content">
+            <div class="block">
+              <div class="block-title">After the interview, let us know what is your first impression from the person who just registrate.</div>
+
+              <div class="block-title">Indication score 1 till 5</div>
+
+              <div class="block">
+                <div class="row">
+                  <div class="col">Professional
+                  <div class="list">
+                      <ul>
+                      <li>
+                      <label class="item-radio item-content">
+                        <input type="radio" name="internalScoreProfessional" value="1" />
+                        <i class="icon icon-radio"></i>
+                        <div class="item-inner">
+                          <div class="item-title">1</div>
+                        </div>
+                      </label>
+                      </li>
+                      <li>
+                      <label class="item-radio item-content">
+                        <input type="radio" name="internalScoreProfessional" value="2"/>
+                        <i class="icon icon-radio"></i>
+                        <div class="item-inner">
+                          <div class="item-title">2</div>
+                        </div>
+                      </label>
+                      </li>
+                      <li>
+                      <label class="item-radio item-content">
+                        <input type="radio" name="internalScoreProfessional" value="3"/>
+                        <i class="icon icon-radio"></i>
+                        <div class="item-inner">
+                          <div class="item-title">3</div>
+                        </div>
+                      </label>
+                      </li>
+                      <li>
+                      <label class="item-radio item-content">
+                        <input type="radio" name="internalScoreProfessional" value="4"/>
+                        <i class="icon icon-radio"></i>
+                        <div class="item-inner">
+                          <div class="item-title">4</div>
+                        </div>
+                      </label>
+                      </li>
+                      <li>
+                      <label class="item-radio item-content">
+                        <input type="radio" name="internalScoreProfessional" value="5"/>
+                        <i class="icon icon-radio"></i>
+                        <div class="item-inner">
+                          <div class="item-title">5</div>
+                        </div>
+                      </label>
+                      </li>
+                      </ul>
+                  </div>
+
+                  </div>
+                  <div class="col">Communication
+                  <div class="list">
+                      <ul>
+                      <li>
+                      <label class="item-radio item-content">
+                        <input type="radio" name="internalScoreCommunication" value="1" />
+                        <i class="icon icon-radio"></i>
+                        <div class="item-inner">
+                          <div class="item-title">1</div>
+                        </div>
+                      </label>
+                      </li>
+                      <li>
+                      <label class="item-radio item-content">
+                        <input type="radio" name="internalScoreCommunication" value="2"/>
+                        <i class="icon icon-radio"></i>
+                        <div class="item-inner">
+                          <div class="item-title">2</div>
+                        </div>
+                      </label>
+                      </li>
+                      <li>
+                      <label class="item-radio item-content">
+                        <input type="radio" name="internalScoreCommunication" value="3"/>
+                        <i class="icon icon-radio"></i>
+                        <div class="item-inner">
+                          <div class="item-title">3</div>
+                        </div>
+                      </label>
+                      </li>
+                      <li>
+                      <label class="item-radio item-content">
+                        <input type="radio" name="internalScoreCommunication" value="4"/>
+                        <i class="icon icon-radio"></i>
+                        <div class="item-inner">
+                          <div class="item-title">4</div>
+                        </div>
+                      </label>
+                      </li>
+                      <li>
+                      <label class="item-radio item-content">
+                        <input type="radio" name="internalScoreCommunication" value="5"/>
+                        <i class="icon icon-radio"></i>
+                        <div class="item-inner">
+                          <div class="item-title">5</div>
+                        </div>
+                      </label>
+                      </li>
+                      </ul>
+                  </div>
+                  </div>
+                  <div class="col">The look
+                  <div class="list">
+                      <ul>
+                      <li>
+                      <label class="item-radio item-content">
+                        <input type="radio" name="internalScoreTheLook" value="1" />
+                        <i class="icon icon-radio"></i>
+                        <div class="item-inner">
+                          <div class="item-title">1</div>
+                        </div>
+                      </label>
+                      </li>
+                      <li>
+                      <label class="item-radio item-content">
+                        <input type="radio" name="internalScoreTheLook" value="2"/>
+                        <i class="icon icon-radio"></i>
+                        <div class="item-inner">
+                          <div class="item-title">2</div>
+                        </div>
+                      </label>
+                      </li>
+                      <li>
+                      <label class="item-radio item-content">
+                        <input type="radio" name="internalScoreTheLook" value="3"/>
+                        <i class="icon icon-radio"></i>
+                        <div class="item-inner">
+                          <div class="item-title">3</div>
+                        </div>
+                      </label>
+                      </li>
+                      <li>
+                      <label class="item-radio item-content">
+                        <input type="radio" name="internalScoreTheLook" value="4"/>
+                        <i class="icon icon-radio"></i>
+                        <div class="item-inner">
+                          <div class="item-title">4</div>
+                        </div>
+                      </label>
+                      </li>
+                      <li>
+                      <label class="item-radio item-content">
+                        <input type="radio" name="internalScoreTheLook" value="5"/>
+                        <i class="icon icon-radio"></i>
+                        <div class="item-inner">
+                          <div class="item-title">5</div>
+                        </div>
+                      </label>
+                      </li>
+                      </ul>
+                  </div>
+                  </div>
+                  <div class="col">Serius
+                  <div class="list">
+                      <ul>
+                      <li>
+                      <label class="item-radio item-content">
+                        <input type="radio" name="internalScoreSerius" value="1" />
+                        <i class="icon icon-radio"></i>
+                        <div class="item-inner">
+                          <div class="item-title">1</div>
+                        </div>
+                      </label>
+                      </li>
+                      <li>
+                      <label class="item-radio item-content">
+                        <input type="radio" name="internalScoreSerius" value="2"/>
+                        <i class="icon icon-radio"></i>
+                        <div class="item-inner">
+                          <div class="item-title">2</div>
+                        </div>
+                      </label>
+                      </li>
+                      <li>
+                      <label class="item-radio item-content">
+                        <input type="radio" name="internalScoreSerius" value="3"/>
+                        <i class="icon icon-radio"></i>
+                        <div class="item-inner">
+                          <div class="item-title">3</div>
+                        </div>
+                      </label>
+                      </li>
+                      <li>
+                      <label class="item-radio item-content">
+                        <input type="radio" name="internalScoreSerius" value="4"/>
+                        <i class="icon icon-radio"></i>
+                        <div class="item-inner">
+                          <div class="item-title">4</div>
+                        </div>
+                      </label>
+                      </li>
+                      <li>
+                      <label class="item-radio item-content">
+                        <input type="radio" name="internalScoreSerius" value="5"/>
+                        <i class="icon icon-radio"></i>
+                        <div class="item-inner">
+                          <div class="item-title">5</div>
+                        </div>
+                      </label>
+                      </li>
+                      </ul>
+                  </div>
+                  </div>
+                </div>
+              </div>
+
+                  <ul>
+                    <li class="align-top">
+                      <div class="item-content item-input">
+                        <div class="item-inner">
+                          <div class="item-title item-floating-label">Write here some extra your First impression information.</div>
+                          <div class="item-input-wrap">
+                            <textarea placeholder="" name="internalFirstImpression" class="resizable"></textarea>
+                            <span class="input-clear-button"></span>
+                          </div>
+                        </div>
+                      </div>
+                    </li>
+                  </ul>
+            </div>
+          </div>
+        </li>
+
+
+
+
+
+
+      </ul>
+      </div>
+
+     </form>
+    </div>
+</div>

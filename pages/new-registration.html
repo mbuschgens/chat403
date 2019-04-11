@@ -1,0 +1,235 @@
+<div class="page" data-name="new-registration">
+
+  <div class="navbar">
+    <div class="navbar-inner sliding">
+      <div class="left">
+        <!-- <a href="#" class="link icon-only panel-open" data-panel="left">
+          <i class="icon f7-icons ios-only"></i>
+          <i class="icon material-icons md-only"></i>
+        </a> -->
+
+        <a href="#" class="link icon-only panel-open" data-panel="left">
+          <i class="icon f7-icons ios-only">menu</i>
+          <i class="icon material-icons md-only">menu</i>
+        </a>
+
+      </div>
+      <div class="title">New Registration Personal Details</div>
+      <div class="right">
+        <a href="/new-registration-living/" data-view=".view-main">NEXT
+          <i class="icon icon-forward"></i>
+          <span class="ios-only"></span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-content">
+    <div class="block-title regId"></div>
+    <div class="list no-hairlines-md">
+
+<form class="form-store-data" id="new-registration">
+
+
+<input type="hidden" name="regId" id="regId" value="">
+<!-- <input type="hidden" name="available" id="available"> -->
+<input type="hidden" name="recruiter" id="recruiter" value="">
+
+<input type="hidden" name="dataOfRegistration" id="dataOfRegistration" value="">
+
+
+<div>
+  <p><span data-progress="10" class="progressbar" id="registration-progressbar"></span></p>
+</div>
+
+      <ul>
+
+        <li>
+          <div class="item-content">
+            <div class="item-inner">
+              <div class="item-title">Available</div>
+              <div class="item-after">
+                <label class="toggle toggle-init">
+                  <input type="checkbox" name="available" checked><i class="toggle-icon"></i>
+                </label>
+              </div>
+            </div>
+          </div>
+        </li>
+
+        <li>
+          <div class="item-content item-input">
+            <div class="item-inner">
+              <div class="item-title item-floating-label">First name</div>
+              <div class="item-input-wrap">
+                <input type="text" name="firstName" placeholder="First name" required validate/>
+                <span class="input-clear-button"></span>
+              </div>
+            </div>
+          </div>
+        </li>
+
+
+        <!-- <li class="item-content item-input item-input-outline">
+          <div class="item-inner">
+            <div class="item-title item-floating-label">First name</div>
+            <div class="item-input-wrap">
+              <input type="text" name="firstName" placeholder="First name"/>
+              <span class="input-clear-button"></span>
+            </div>
+          </div>
+        </li>
+ -->
+
+
+
+        <li>
+          <div class="item-content item-input">
+            <div class="item-inner">
+              <div class="item-title item-floating-label">Sure name</div>
+              <div class="item-input-wrap">
+                <input type="text" name="sureName"placeholder="Sure name" required validate/>
+                <span class="input-clear-button"></span>
+              </div>
+            </div>
+          </div>
+        </li>
+
+
+        <li>
+          <div class="item-content item-input">
+            <div class="item-inner">
+              <div class="item-title item-floating-label">E-mail</div>
+              <div class="item-input-wrap">
+                <input type="email" name="eMail"placeholder="E-mail" required validate/>
+                <span class="input-clear-button"></span>
+              </div>
+            </div>
+          </div>
+        </li>
+
+
+        <!-- <li>
+          <div class="item-content item-input">
+            <div class="item-inner">
+              <div class="item-title item-label">Password</div>
+              <div class="item-input-wrap">
+                <input type="password" name="password" placeholder="Password"/>
+              </div>
+            </div>
+          </div>
+        </li> -->
+
+        <li>
+          <div class="item-content item-input">
+            <div class="item-inner">
+              <div class="item-title item-floating-label">Phone</div>
+              <div class="item-input-wrap">
+                <input type="tel" name="phone" placeholder="Phone" required validate/>
+                <span class="input-clear-button"></span>
+              </div>
+            </div>
+          </div>
+        </li>
+
+        <li>
+          <div class="item-content item-input">
+            <div class="item-inner">
+              <div class="item-title item-floating-label">Gender</div>
+              <div class="item-input-wrap">
+                <select name="gender">
+                  <option>Male</option>
+                  <option>Female</option>
+                </select>
+                <span class="input-clear-button"></span>
+              </div>
+            </div>
+          </div>
+        </li>
+
+        <li>
+          <div class="item-content item-input">
+            <div class="item-inner">
+              <div class="item-title item-label">Birth date</div>
+              <div class="item-input-wrap">
+                <input type="date" name="birthDay" placeholder="Birth day" value="" required validate/>
+                <span class="input-clear-button"></span>
+              </div>
+            </div>
+          </div>
+        </li>
+
+        <li>
+          <div class="item-content item-input">
+            <div class="item-inner">
+              <div class="item-title item-floating-label">Place of birth</div>
+              <div class="item-input-wrap">
+                <input type="text" name="placeOfBirth" placeholder="Place of birth" required validate/>
+                <span class="input-clear-button"></span>
+              </div>
+            </div>
+          </div>
+        </li>
+
+
+        <li>
+          <div class="item-content item-input">
+            <div class="item-inner">
+              <div class="item-title item-floating-label">Nationality</div>
+              <div class="item-input-wrap">
+                <select name="nationality">
+                  <option>Portugal</option>
+                  <option>Hollandia</option>
+                  <option>Spanish</option>
+                  <option>Brasil</option>
+                  <option>Different</option>
+                </select>
+                <span class="input-clear-button"></span>
+              </div>
+            </div>
+          </div>
+        </li>
+
+        <li>
+          <div class="item-content item-input">
+            <div class="item-inner">
+              <div class="item-title item-floating-label">Marital status</div>
+              <div class="item-input-wrap">
+                <select name="maritalStatus">
+                  <option>Single</option>
+                  <option>Married</option>
+                  <option>Divorced</option>
+                  <option>Widow</option>
+                </select>
+                <span class="input-clear-button"></span>
+              </div>
+            </div>
+          </div>
+        </li>
+
+
+        <!-- <li class="align-top">
+          <div class="item-content item-input">
+            <div class="item-inner">
+              <div class="item-title item-floating-label">First impression</div>
+              <div class="item-input-wrap">
+                <textarea placeholder="" name="firstImpression" class="resizable"></textarea>
+                <span class="input-clear-button"></span>
+              </div>
+            </div>
+          </div>
+        </li> -->
+
+
+
+
+      </ul>
+</form>
+
+<!-- <div class="block block-strong row">
+  <a class="button merge-form-data-table" href="#">Mail Form Data</a>
+</div> -->
+
+    </div>
+  </div>
+</div>

@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "520483215014",
+    "firebase_url": "https://phone403.firebaseio.com",
+    "project_id": "phone403",
+    "storage_bucket": "phone403.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:520483215014:android:66785805c443c7df",
+        "android_client_info": {
+          "package_name": "com.phone403.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "520483215014-poqdg2ed48csvj6g765m7m70htc043vu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD7RWf2PIdmobiflxa0w7QkKOg6IOq18Cc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "520483215014-poqdg2ed48csvj6g765m7m70htc043vu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

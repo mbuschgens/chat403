@@ -1,0 +1,48 @@
+<div class="page" data-name="select-contacts">
+  <div class="navbar">
+    <div class="navbar-inner sliding">
+      <div class="left">
+        <a href="#" class="link back" >
+          <i class="icon f7-icons">arrow_left</i>
+          <span class="ios-only"></span>
+
+        </a>
+      </div>
+      <div class="title">
+                <div id="tousername" class="tousername">Contact kiezen</div>
+                <div id="lastseen" class="lastseen">aantal contacten</div>
+      </div>
+      <div class="right">
+        <a class="link icon-only searchbar-enable" data-searchbar=".searchbar-contacts">
+          <i class="icon f7-icons if-not-md">search</i>
+          <i class="icon material-icons md-only">search</i>
+        </a>
+        <a href="#"><i class="icon f7-icons">more_vertical_fill</i></a>
+      </div>
+
+      <form data-search-container=".virtual-list-contacts" data-search-in="li" data-search-in=".item-title" class="searchbar searchbar-expandable searchbar-contacts searchbar-init">
+        <div class="searchbar-inner">
+          <div class="searchbar-input-wrap">
+            <input type="search" placeholder="Search components"/>
+            <i class="searchbar-icon"></i>
+            <span class="input-clear-button"></span>
+          </div>
+          <span class="searchbar-disable-button if-not-aurora">Cancel</span>
+        </div>
+      </form>
+
+    </div>
+  </div>
+
+
+  <div class="page-content">
+
+
+    <div class="list contacts-list media-list links-list virtual-list virtual-list-contacts search-list searchbar-found"></div>
+     <div class="list simple-list searchbar-not-found">
+      <ul>
+        <li>Nothing found</li>
+      </ul>
+    </div>
+
+</div>
